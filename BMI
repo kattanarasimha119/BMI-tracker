@@ -1,0 +1,34 @@
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Sample dataset (height in meters, weight in kilograms, BMI)
+data = np.array([
+    [1.60, 50, 19.53],
+    [1.65, 60, 22.04],
+    [1.70, 65, 22.49],
+    [1.75, 70, 22.86],
+    [1.80, 80, 24.69],
+    [1.85, 90, 26.30],
+    [1.90, 100, 27.70],
+])
+
+# Extract features (height and weight)
+X = data[:, :2]  # Height and weight
+y = data[:, 2]   # BMI
+
+# Train the linear regression model
+model = LinearRegression()
+model.fit(X, y)
+
+# Function to predict BMI
+def predict_bmi(height, weight):
+    bmi = model.predict([[height, weight]])
+    return bmi[0]
+
+# User input for height and weight
+height = float(input("Enter your height in meters: "))
+weight = float(input("Enter your weight in kilograms: "))
+
+# Predict BMI using the model
+predicted_bmi = predict_bmi(height, weight)
+print("Predicted BMI:", predicted_bmi)
